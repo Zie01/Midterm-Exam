@@ -25,10 +25,20 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 export const firebaseConfig = environment.firebaseConfig;
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { UserLoginComponent } from './users/user-login/user-login.component';
+import { UserProfileComponent } from './users/user-profile/user-profile.component';
+
+import { AuthService } from './core/auth.service';
+// ...
+  providers: [
+    AuthService,
+  ]
 
 @NgModule({
   declarations: [
     AppComponent,
+    UserLoginComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

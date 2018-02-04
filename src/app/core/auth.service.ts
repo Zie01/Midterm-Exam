@@ -20,11 +20,16 @@ interface User {
 export class AuthService {
 
   user: Observable<User | null>;
+  authState: FirebaseAuthState = null;
 
-  constructor(private afAuth: AngularFireAuth,
-              private afs: AngularFirestore,
-              private router: Router,
-              private notify: NotifyService) {
+   authState: FirebaseAuthState = null;
+  constructor(private af: AngularFire,
+              private db: AngularFireDatabase,
+              private router:Router) {
+            af.auth.subscribe((auth) => {
+              this.authState = auth;
+            });
+          }
 
     this.user = this.afAuth.authState
       .switchMap((user) => {
@@ -38,6 +43,18 @@ export class AuthService {
 
   ////// OAuth Methods /////
 
+get authenticated(): boolean {
+  return this.authState !== null;
+}
+
+// Returns current user
+get currentUser(): any {
+  return this.authenticated ? this.authState.auth : null;
+}
+// Returns current user UID
+get currentUserId(): string {
+  return this.authenticated ? this.authState.uid : '';
+}
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return this.oAuthLogin(provider);
