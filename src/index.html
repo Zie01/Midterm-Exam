@@ -24,6 +24,21 @@
     <h1>~$ loading firestarter...</h1>
   </div>
 
+
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCkyR5UZNHMoT4isrQzgyA1t8EE1C_vzIc",
+    authDomain: "firestore-crud-dcdf7.firebaseapp.com",
+    databaseURL: "https://firestore-crud-dcdf7.firebaseio.com",
+    projectId: "firestore-crud-dcdf7",
+    storageBucket: "firestore-crud-dcdf7.appspot.com",
+    messagingSenderId: "800674459983"
+  };
+  firebase.initializeApp(config);
+</script>
+
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/service-worker.js')
